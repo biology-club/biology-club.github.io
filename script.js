@@ -1,5 +1,5 @@
 # ↑の手順でコピーしたURL
-const url = "https://script.google.com/macros/s/xxxxxxxxxxx/exec"
+const url = "https://script.google.com/macros/s/AKfycbz0v2pNU1x628bUqOwKkGvPJTU1tBmu6UV6qnADGtXFK497qX_Ed3RO-QrwaRqB4_we/exec"
 fetch(url , {
   method: "GET",
 }).then(response => response.text())
