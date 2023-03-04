@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <head>
     <title>実験ー玉島高校生物部</title>
-    
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
     <script src="./script.js"></script>
-    
+    <link href='https://unpkg.com/css.gg@2.0.0/icons/css/add-r.css' rel='stylesheet'>
     <style>
     body {
   font-family: 'Noto Sans JP', sans-serif;
@@ -47,6 +47,22 @@
 #waitd{
     text-align: center;
 }
+table{
+  border-collapse:collapse; 
+  width:90%;
+  margin-left:5%;
+}
+
+.goodtd{
+  cursor:pointer;
+}
+.titletd{
+  width:90%;
+  cursor:pointer;
+}
+.add{
+  cursor: pointer;
+}
     </style>
 </head>
 <body>
@@ -56,13 +72,22 @@
       <nav>
         <ul>
           <li><a href="#">予定表</a></li>
-          <li><a href="#">実験</a></li>
+          <li><a href="./email.html">メールアドレスの登録</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
     <div id="waitd">
-        <p id="wait">このページは準備中です。お待ちください。※3/6(月)開設予定</p>
-    </div>
+    <p id="hoge"></p>
+    <table border="1" id="tbl">
+      <tr>
+        <th>タイトル</th>
+        <th>good</th>
+      </tr>
+    </table>
+    <div class="add" onclick="location.href='./add.html'">
+    <p>新規追加</p>
+  </div>
+  </div>
 </body>

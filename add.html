@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<head>
+    <title>新規追加</title>
+    <style>
+            body {
+  font-family: 'Noto Sans JP', sans-serif;
+  color: #222;
+  background-color: #99CC99	;
+}
+
+/* header
+------------------------------ */
+#header {
+  width: 100%;
+  background-color: #99CC00;
+}
+#header .wrapper {
+  overflow: hidden;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1000px;
+}
+
+#header p {
+  float: left;
+  margin: 22px 0 0;
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+#header ul {
+  float: right;
+  margin: 28px 0;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+#header ul li {
+  float: left;
+  margin-right: 40px;
+}
+#header ul li:last-child {
+  margin-right: 0;
+}
+#add{
+    margin-top:30px;
+}
+#add1{
+    width:50%;
+    margin:0 auto;
+}
+#topic{
+    height: 10px;
+    width: 100%; /*親要素いっぱい広げる*/
+    padding: 10px 15px; /*ボックスを大きくする*/
+    font-size: 16px;
+    border-radius: 3px; /*ボックス角の丸み*/
+    border: 2px solid #ddd; /*枠線*/
+    box-sizing: border-box; /*横幅の解釈をpadding, borderまでとする*/
+}
+#detail{
+    width:100%;
+    height:250px;
+}
+    </style>
+    <script>
+        const url = "https://script.google.com/macros/s/AKfycbw5fwPttBRBZCbPatGb615monOctCKtLqA7LojTcWfBDRMkOsFDofrYRhp7Vm7TUVK9LQ/exec";
+        function submit(){
+            var topic = document.getElementById('topic').value;
+            var detail = document.getElementById('detail').value;
+            if(!topic||!detail){
+                alert('すべて入力してください');
+            }else{
+            alert('送信します。');
+            var form = url+"?page=new&newtitle="+topic+"&detail="+detail;
+      fetch(form,{
+        method:"GET",
+      }).then(response => response.text())
+        .then(text => {
+            if(text=='success'){
+                location.href='./index.html';
+            }
+        });
+    }
+        }//**new,newtitle,detail/
+    </script>
+</head>
+<body>
+    <header id="header">
+        <div class="wrapper">
+          <p class="logo"><a href="./index.html">実験ー玉島高校生物部</a></p>
+          <nav>
+            <ul>
+              <li><a href="#">予定表</a></li>
+              <li><a href="./email.html">メールアドレスの登録</a></li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+  <div id="add">
+    <div id="add1">
+    <label for="topic">タイトルを入力してください</label><br>
+    <input type="text" id="topic"><br>
+    <label for="detail">詳細を入力してください</label><br>
+    <textarea id="detail"></textarea><br>
+    <button type="button" onclick="submit()">送信</button>
+</div>
+  </div>
+</body>

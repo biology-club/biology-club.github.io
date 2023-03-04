@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<head>
+    <style>
+        #header {
+  width: 100%;
+  background-color: #99CC00;
+}
+#header .wrapper {
+  overflow: hidden;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1000px;
+}
+
+#header p {
+  float: left;
+  margin: 22px 0 0;
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+#header ul {
+  float: right;
+  margin: 28px 0;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+#header ul li {
+  float: left;
+  margin-right: 40px;
+}
+#header ul li:last-child {
+  margin-right: 0;
+}
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+  color: #222;
+  background-color: #99CC99	;
+}
+.newmail{
+    width:50%;
+    margin:0 auto;
+    margin-top:20px;
+}
+#name{
+    width:100%;
+    height: 20px;
+}
+#mail{
+    width: 100%;
+    height: 20px;
+}
+#mail2{
+    width: 100%;
+    height: 20px;
+}
+.center{
+    margin-top:10px;
+    text-align: center;
+}
+    </style>
+    <script>
+        const url = "https://script.google.com/macros/s/AKfycbw5fwPttBRBZCbPatGb615monOctCKtLqA7LojTcWfBDRMkOsFDofrYRhp7Vm7TUVK9LQ/exec";
+        function submail(){
+            var name = document.getElementById('name').value;
+            var mail = document.getElementById('mail').value;
+            var mail2 = document.getElementById('mail2').value;
+            if(!mail||!mail2||!name){
+                alert('すべて入力してください');
+            }else if(mail==mail2){
+            alert('送信します。');
+            var form = url+"?page=mail&mail="+mail+"&name="+name;
+      fetch(form,{
+        method:"GET",
+      }).then(response => response.text())
+        .then(text => {
+            if(text=='success'){
+                location.href='./index.html';
+            }
+        });
+    }else{
+        alert('メールアドレスが一致しません');
+    }
+        }
+    </script>
+    <title>メールアドレスの登録</title>
+</head>
+<body>
+    <header id="header">
+        <div class="wrapper">
+          <p class="logo"><a href="./index.html">実験ー玉島高校生物部</a></p>
+          <nav>
+            <ul>
+              <li><a href="#">予定表</a></li>
+              <li><a href="./add.html">新しい提案</a></li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+      <div class="newmail">
+        <label for="name">名前を入力してください</label><br>
+        <input type="text" id="name"><br>
+        <label for="mail">メールアドレスを入力してください</label><br>
+        <input type="email" id="mail"><br>
+        <label for="mail2">確認</label><br>
+        <input type="email" id="mail2"><br>
+        <div class="center">
+            <button onclick="submail()">登録</button>
+        </div>
+      </div>
+</body>

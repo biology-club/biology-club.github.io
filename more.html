@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<head>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <style>
+        
+table{
+  border-collapse:collapse; 
+  width:90%;
+  margin-left:5%;
+}
+#left{
+    width:10%;
+}
+#header {
+  width: 100%;
+  background-color: #99CC00;
+}
+#header .wrapper {
+  overflow: hidden;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1000px;
+}
+
+#header p {
+  float: left;
+  margin: 22px 0 0;
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+#header ul {
+  float: right;
+  margin: 28px 0;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+#header ul li {
+  float: left;
+  margin-right: 40px;
+}
+#header ul li:last-child {
+  margin-right: 0;
+}
+#tbl{
+    margin-top:10px;
+}
+:focus::placeholder { color: white; }
+#newc{
+    width:90%;
+    height: 20px;
+    outline: none;
+    border: none;
+}
+#sub{
+    float:right;
+    width:9%;
+}
+    </style>
+    <script>
+        var query = location.search;
+    var value = query.split('=');
+    var data = decodeURIComponent(value[1]);
+    var url = "https://script.google.com/macros/s/AKfycbw5fwPttBRBZCbPatGb615monOctCKtLqA7LojTcWfBDRMkOsFDofrYRhp7Vm7TUVK9LQ/exec";
+    var form = url+"?page=more&id="+data;
+      fetch(form,{
+        method:"GET",
+      }).then(response => response.text())
+        .then(text => {
+            var res =JSON.parse(text);
+            console.log(res);
+            var title = res[0];
+            var detail = res[1];
+            document.getElementById('title').innerText=title;
+            document.getElementById('detail').innerText=detail;
+
+
+            for(i=0;i<res[3].length;i++){
+            let tbl = document.getElementById('comment');
+            let tr = document.createElement('tr');
+            let td = document.createElement('td');
+             var id = i+1;
+             td.id='com-'+id;
+             td.innerText=res[3][i];
+             td.classList.add("titletd")
+             tr.appendChild(td);
+             tbl.appendChild(tr);
+            }
+           if(res[3].length<1){
+            let tbl = document.getElementById('comment');
+            let tr = document.createElement('tr');
+            let td = document.createElement('td');
+            td.innerText='コメントはありません';
+               tr.appendChild(td);
+               tbl.appendChild(tr);
+            }else{}
+            let tbl = document.getElementById('comment');
+            let tr = document.createElement('tr');
+            let td = document.createElement('td');
+            td.innerHTML='<input id="newc" type="text" placeholder="コメントを追加"><button type="button" id="sub" onclick="subcom()">送信</button>'
+               tr.appendChild(td);
+               tbl.appendChild(tr);
+        });
+        function subcom(){
+            var comment = document.getElementById('newc').value;
+            alert('送信します。');
+            var form = url+"?page=comment&id="+data+"&comment="+comment;
+      fetch(form,{
+        method:"GET",
+      }).then(response => response.text())
+        .then(text => {
+            if(text=='success'){
+                location.reload();
+            }
+        });
+        }
+    </script>
+</head>
+<body>
+    <header id="header">
+        <div class="wrapper">
+          <p class="logo"><a href="./index.html">実験ー玉島高校生物部</a></p>
+          <nav>
+            <ul>
+              <li><a href="#">予定表</a></li>
+              <li><a href="./email.html">メールアドレスの登録</a></li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+    <div>
+    <table border="1" id="tbl">
+      <tr>
+        <td id="left">タイトル</td>
+        <td id="title">読み込み中</td>
+      </tr>
+      <tr><td colspan="2">詳細</td></tr>
+      <tr><td id="detail" colspan="2">読み込み中</td></tr>
+    </table>
+</div>
+<table border="1" style="margin-top:10px;" id="comment">
+    <th>コメント</th>
+</table>
+</body>
