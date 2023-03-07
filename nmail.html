@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<head>
+    <script>
+        var query = location.search;
+    var value = query.split('=');
+    var mail = decodeURIComponent(value[1]);
+    var url = "https://script.google.com/macros/s/AKfycbw5fwPttBRBZCbPatGb615monOctCKtLqA7LojTcWfBDRMkOsFDofrYRhp7Vm7TUVK9LQ/exec";
+    var form = url+"?page=cmail&mail="+mail;
+      fetch(form,{
+        method:"GET",
+      }).then(response => response.text())
+        .then(text => {
+            console.log(text);
+            document.getElementById("register").innerText=text;
+        });
+        function rgd(){
+            var send = url+"?page=rmail&mail="+mail;
+            fetch(send,{
+        method:"GET",
+      }).then(response => response.text())
+        .then(text => {
+            if(text=="success"){
+                location.href='./index.html';
+            }
+        });
+        }
+    </script>
+    <style>
+        .center{
+            margin-top:40%;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="center">
+        <button id="register" onclick="rgd()"></button>
+    </div>
+</body>
