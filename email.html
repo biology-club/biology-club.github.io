@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <head>
+  <link rel="stylesheet" href="./loading.css">
     <style>
         #header {
   width: 100%;
@@ -68,20 +69,26 @@ body {
             if(!mail||!mail2||!name){
                 alert('すべて入力してください');
             }else if(mail==mail2){
-            alert('送信します。');
+              var confirm =window.confirm("送信します");
+            if(confirm){
+              var loading = runOpen();
             var form = url+"?page=mail&mail="+mail+"&name="+name;
       fetch(form,{
         method:"GET",
       }).then(response => response.text())
         .then(text => {
             if(text=='success'){
-                location.href='./openmail.html';
+                location.href='./index.html';
             }
-        });
+        });}
     }else{
         alert('メールアドレスが一致しません');
     }
         }
+        function runOpen(){
+    document.getElementById("runArea").className = 'runBg';
+    return false;
+  }
     </script>
     <title>メールアドレスの登録</title>
 </head>
@@ -91,7 +98,7 @@ body {
           <p class="logo"><a href="./index.html">実験ー玉島高校生物部</a></p>
           <nav>
             <ul>
-              <li><a href="https://docs.google.com/spreadsheets/d/1Ks1QQx-tKyQUobQdTFQcHlQYtjEYllgQQlmHHJ7_oZY/edit?usp=sharing">予定表</a></li>
+              <li><a href="#">予定表</a></li>
               <li><a href="./add.html">新しい提案</a></li>
             </ul>
           </nav>
@@ -108,4 +115,11 @@ body {
             <button onclick="submail()">登録</button>
         </div>
       </div>
+      <!-- 実行中ウインドウのエリア -->
+<div id="runArea" class="runNoDisp">
+  <div class="runWindow"> <!-- ここがウインドウとなります -->
+    <p>実行中<br>しばらくお待ちください</p>
+    <div class="bar"></div>
+  </div>
+</div>
 </body>

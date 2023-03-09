@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <head>
     <title>新規追加</title>
+    <link rel="stylesheet" href="./loading.css">
     <style>
             body {
   font-family: 'Noto Sans JP', sans-serif;
@@ -70,7 +71,9 @@
             if(!topic||!detail){
                 alert('すべて入力してください');
             }else{
-            alert('送信します。');
+              var confirm =window.confirm("送信します");
+            if(confirm){
+              var loading = runOpen();
             var form = url+"?page=new&newtitle="+topic+"&detail="+detail;
       fetch(form,{
         method:"GET",
@@ -80,8 +83,12 @@
                 location.href='./index.html';
             }
         });
-    }
-        }//**new,newtitle,detail/
+    }else{}
+        }}
+        function runOpen(){
+    document.getElementById("runArea").className = 'runBg';
+    return false;
+  }
     </script>
 </head>
 <body>
@@ -90,7 +97,7 @@
           <p class="logo"><a href="./index.html">実験ー玉島高校生物部</a></p>
           <nav>
             <ul>
-              <li><a href="https://docs.google.com/spreadsheets/d/1Ks1QQx-tKyQUobQdTFQcHlQYtjEYllgQQlmHHJ7_oZY/edit?usp=sharing">予定表</a></li>
+              <li><a href="#">予定表</a></li>
               <li><a href="./email.html">メールアドレスの登録</a></li>
             </ul>
           </nav>
@@ -105,4 +112,11 @@
     <button type="button" onclick="submit()">送信</button>
 </div>
   </div>
+  <!-- 実行中ウインドウのエリア -->
+<div id="runArea" class="runNoDisp">
+  <div class="runWindow"> <!-- ここがウインドウとなります -->
+    <p>実行中<br>しばらくお待ちください</p>
+    <div class="bar"></div>
+  </div>
+</div>
 </body>
