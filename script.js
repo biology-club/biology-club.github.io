@@ -6,30 +6,33 @@ fetch(url , {
   var res =JSON.parse(text);
   console.log(res);
   for(i=0;i<res.length;i++){
-  let tbl = document.getElementById('tbl');
+  let out = document.getElementById('out');
   
-  let tr = document.createElement('tr');
-  let td = document.createElement('td');
+  let content = document.createElement('p');
+  let link = document.createElement('p');
   var id = i+1;
-  td.id='tit-'+id;
-  td.setAttribute('onclick', 'moreButton(this.id)');
-  td.innerText=res[i][0];
-  td.classList.add("titletd")
-  let goodtd = document.createElement('td');
-  goodtd.innerText='👍'+res[i][1];
-  goodtd.id='good-'+id;
-  goodtd.setAttribute('onclick', 'goodButton(this.id)');
-  goodtd.classList.add("goodtd");
-  tr.appendChild(td);
-  tr.appendChild(goodtd);
-   tbl.appendChild(tr);
+  link.id='tit-'+id;
+  link.setAttribute('onclick', 'moreButton(this.id)');
+  link.innerText=res[i][0];
+  content.classList.add("content");
+  link.classList.add("link");
+
+  let good = document.createElement('p');
+  good.innerText='賛同数：'+res[i][1];
+  good.id='good-'+id;
+  good.setAttribute('onclick', 'goodButton(this.id)');
+  good.classList.add("good");
+  content.appendChild(link);
+  content.appendChild(good);
+   out.appendChild(content);
   }
+  document.getElementById('loading').remove();
 });
 function goodButton(id){
   var a =document.getElementById(id).innerText;
-  var n = a.split('👍');
+  var n = a.split('：');
   var numb = Number(n[1])+1;
-  document.getElementById(id).innerText='👍'+numb;
+  document.getElementById(id).innerText='賛同数：'+numb;
   var sp = id.split('-');
   var te = sp[1];
   console.log(te);
@@ -46,4 +49,7 @@ function moreButton(id){
   var sp = id.split('-');
   var te = sp[1];
   location.href="./more.html?id="+te;
+}
+function opendrive(){
+  location.href="https://drive.google.com/drive/folders/1osnVxVzObKBF5jr0Wg26dGQqTvOQqrKg";
 }
