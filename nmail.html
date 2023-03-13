@@ -19,6 +19,7 @@
           btn.innerHTML=text;
           btn.setAttribute('onclick', 'rgd()');
           btn.classList.add("register");
+          btn.id='register';
           console.log(btn);
           document.body.appendChild(btn);
           }
@@ -31,6 +32,9 @@
       }).then(response => response.text())
         .then(text => {
             if(text=="success"){
+              var username = document.getElementById('register').value;
+              localStorage.setItem('mail',mail);
+              localStorage.setItem('username',username);//**考えろ
                 location.href='./index.html';
             }
         });

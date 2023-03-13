@@ -62,6 +62,9 @@ body {
     </style>
     <script>
         const url = "https://script.google.com/macros/s/AKfycbw5fwPttBRBZCbPatGb615monOctCKtLqA7LojTcWfBDRMkOsFDofrYRhp7Vm7TUVK9LQ/exec";
+        const username = localStorage.getItem('username');
+        const usermail = localStorage.getItem('mail');
+        const userinfo = "&name="+username+"&mail="+usermail;
         function submail(){
             var name = document.getElementById('name').value;
             var mail = document.getElementById('mail').value;
@@ -72,7 +75,7 @@ body {
               var confirm =window.confirm("送信します");
             if(confirm){
               var loading = runOpen();
-            var form = url+"?page=mail&mail="+mail+"&name="+name;
+            var form = url+"?page=mail&mail="+mail+"&name="+name+userinfo;
       fetch(form,{
         method:"GET",
       }).then(response => response.text())

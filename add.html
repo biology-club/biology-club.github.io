@@ -65,6 +65,9 @@
     </style>
     <script>
         const url = "https://script.google.com/macros/s/AKfycbw5fwPttBRBZCbPatGb615monOctCKtLqA7LojTcWfBDRMkOsFDofrYRhp7Vm7TUVK9LQ/exec";
+        const username = localStorage.getItem('username');
+        const usermail = localStorage.getItem('mail');
+        const userinfo = "&name="+username+"&mail="+usermail;
         function submit(){
             var topic = document.getElementById('topic').value;
             var detail = document.getElementById('detail').value;
@@ -74,7 +77,7 @@
               var confirm =window.confirm("送信します");
             if(confirm){
               var loading = runOpen();
-            var form = url+"?page=new&newtitle="+topic+"&detail="+detail;
+            var form = url+"?page=new&newtitle="+topic+"&detail="+detail+userinfo;
       fetch(form,{
         method:"GET",
       }).then(response => response.text())

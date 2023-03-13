@@ -59,11 +59,14 @@ table{
 }
     </style>
     <script>
+        const username = localStorage.getItem('username');
+        const usermail = localStorage.getItem('mail');
+        const userinfo = "&name="+username+"&mail="+usermail;
         var query = location.search;
     var value = query.split('=');
     var data = decodeURIComponent(value[1]);
     var url = "https://script.google.com/macros/s/AKfycbw5fwPttBRBZCbPatGb615monOctCKtLqA7LojTcWfBDRMkOsFDofrYRhp7Vm7TUVK9LQ/exec";
-    var form = url+"?page=more&id="+data;
+    var form = url+"?page=more&id="+data+userinfo;
       fetch(form,{
         method:"GET",
       }).then(response => response.text())
@@ -107,7 +110,7 @@ table{
             var confirm =window.confirm("送信します");
             if(confirm){
             var locationg = runOpen();
-            var form = url+"?page=comment&id="+data+"&comment="+comment;
+            var form = url+"?page=comment&id="+data+"&comment="+comment+userinfo;
       fetch(form,{
         method:"GET",
       }).then(response => response.text())

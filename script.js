@@ -1,5 +1,9 @@
 const url = "https://script.google.com/macros/s/AKfycbw5fwPttBRBZCbPatGb615monOctCKtLqA7LojTcWfBDRMkOsFDofrYRhp7Vm7TUVK9LQ/exec"
-fetch(url , {
+const username = localStorage.getItem('username');
+const mail = localStorage.getItem('mail');
+console.log('username='+username+',mail='+mail);
+var index = url+'?mail='+mail+'&name='+username;
+fetch(index , {
   method: "GET",
 }).then(response => response.text())
 .then(text => {
@@ -36,7 +40,7 @@ function goodButton(id){
   var sp = id.split('-');
   var te = sp[1];
   console.log(te);
-  var form = url+"?page=good&id="+te;
+  var form = url+"?page=good&id="+te+"&mail="+mail+"&name="+name;
   fetch(form,{
     method:"GET",
   }).then(response => response.text())
