@@ -71,6 +71,9 @@ table{
         method:"GET",
       }).then(response => response.text())
         .then(text => {
+          if(text=='blocked'){
+              location.href='./login.html';
+            }else{
             var res =JSON.parse(text);
             console.log(res);
             var title = res[0];
@@ -104,6 +107,7 @@ table{
             td.innerHTML='<input id="newc" type="text" placeholder="コメントを追加"><button type="button" id="sub" onclick="subcom()">送信</button>'
                tr.appendChild(td);
                tbl.appendChild(tr);
+          }
         });
         function subcom(){
             var comment = document.getElementById('newc').value;
@@ -117,6 +121,8 @@ table{
         .then(text => {
             if(text=='success'){
                 location.reload();
+            }else if(text=='blocked'){
+              location.href='./login.html';
             }
         });
         }else{}

@@ -80,7 +80,9 @@ body {
         method:"GET",
       }).then(response => response.text())
         .then(text => {
-            if(text=='success'){
+          if(text=='blocked'){
+              location.href='./login.html';
+            }else if(text=='success'){
                 location.href='./index.html';
             }
         });}

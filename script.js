@@ -1,13 +1,18 @@
 const url = "https://script.google.com/macros/s/AKfycbw5fwPttBRBZCbPatGb615monOctCKtLqA7LojTcWfBDRMkOsFDofrYRhp7Vm7TUVK9LQ/exec"
 const username = localStorage.getItem('username');
 const mail = localStorage.getItem('mail');
+if(!mail||!username){
+  location.href="./login.html";
+}else{
 console.log('username='+username+',mail='+mail);
-alert('プログラムの更新中にエラーが発生しました。復旧には明日朝までかかりそうです。それまでこのページは使用できません。ご迷惑をおかけして申し訳ありません。');
 var index = url+'?mail='+mail+'&name='+username;
 fetch(index , {
   method: "GET",
 }).then(response => response.text())
 .then(text => {
+  if(text=='blocked'){
+    location.href='./login.html';
+  }else{
   var res =JSON.parse(text);
   console.log(res);
   for(i=0;i<res.length;i++){
@@ -32,7 +37,9 @@ fetch(index , {
    out.appendChild(content);
   }
   document.getElementById('loading').remove();
-});
+}
+})
+};
 function goodButton(id){
   var a =document.getElementById(id).innerText;
   var n = a.split('：');

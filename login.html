@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<head>
+    <style>
+        body{
+            background-color: white;
+        }
+        #crear{
+            margin-left: 30px;
+        }
+        .form{
+            width: 300px;
+            margin:0 auto;
+            margin-top: 100px;
+        }
+        #header {
+            height: 70px;
+    width: 100%;
+    background-color: #99CC00;
+  }
+  #header p{
+    overflow: hidden;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1000px;
+    float: left;
+    margin: 22px 0 0;
+    font-size: 1.4rem;
+    font-weight: 700;
+  }
+    </style>
+    <script>
+        function set(){
+            var username = document.getElementById('username').value;
+            var mail = document.getElementById('mail').value;
+            var url = "https://script.google.com/macros/s/AKfycbw5fwPttBRBZCbPatGb615monOctCKtLqA7LojTcWfBDRMkOsFDofrYRhp7Vm7TUVK9LQ/exec";
+    var form = url+"?page=login&mail="+mail+"&name="+username;
+      fetch(form,{
+        method:"GET",
+      }).then(response => response.text())
+        .then(text => {
+            if(text=='success'){
+            localStorage.setItem('mail',mail);
+            localStorage.setItem('username',username);
+            location.href='./index.html';
+            }else{
+                alert('ログインできませんでした');
+            }
+        });
+        }
+        function load(){
+            var username = localStorage.getItem('username');
+            var mail = localStorage.getItem('mail');
+            console.log('username='+username);
+            console.log('mail='+mail);
+        }
+        function clear(){
+            var len = localStorage.length;
+            console.log(len);
+            localStorage.clear();
+            console.log('clear');
+        }
+    </script>
+</head>
+<body>
+    <header id="header">
+        <p>ログインページ</p>
+    </header>
+    <div class="form">
+    <label for="username">名前を入力してください</label><br>
+    <input type="text" id="username"><br>
+    <label for="mail">メールアドレスを入力してください</label><br>
+    <input type="text" id="mail"><br>
+    <br>
+    <button type="button" onclick="set()">ログイン</button>
+    <button type="button" id="clear" onclick="localStorage.clear();">ログアウト</button>
+    </div>
+</body>

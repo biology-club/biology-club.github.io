@@ -82,7 +82,9 @@
         method:"GET",
       }).then(response => response.text())
         .then(text => {
-            if(text=='success'){
+          if(text=='blocked'){
+              location.href='./login.html';
+            }else if(text=='success'){
                 location.href='./index.html';
             }
         });
@@ -100,7 +102,7 @@
           <p class="logo"><a href="./index.html">実験ー玉島高校生物部</a></p>
           <nav>
             <ul>
-              <li><a href="#">予定表</a></li>
+              <li><a href="https://docs.google.com/spreadsheets/d/1Ks1QQx-tKyQUobQdTFQcHlQYtjEYllgQQlmHHJ7_oZY/edit?usp=sharing">予定表</a></li>
               <li><a href="./email.html">メールアドレスの登録</a></li>
             </ul>
           </nav>
