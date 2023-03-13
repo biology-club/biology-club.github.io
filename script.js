@@ -2,6 +2,7 @@ const url = "https://script.google.com/macros/s/AKfycbw5fwPttBRBZCbPatGb615monOc
 const username = localStorage.getItem('username');
 const mail = localStorage.getItem('mail');
 console.log('username='+username+',mail='+mail);
+alert('プログラムの更新中にエラーが発生しました。復旧には明日朝までかかりそうです。それまでこのページは使用できません。ご迷惑をおかけして申し訳ありません。');
 var index = url+'?mail='+mail+'&name='+username;
 fetch(index , {
   method: "GET",
