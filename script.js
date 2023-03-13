@@ -32,8 +32,14 @@ fetch(index , {
   good.id='good-'+id;
   good.setAttribute('onclick', 'goodButton(this.id)');
   good.classList.add("good");
+
+  let contributor = document.createElement('p');
+  contributor.innerText=res[i][3];
+  contributor.classList.add('contributor');
+
   content.appendChild(link);
   content.appendChild(good);
+  content.appendChild(contributor);
    out.appendChild(content);
   }
   document.getElementById('loading').remove();
