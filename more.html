@@ -88,7 +88,7 @@ table{
             let td = document.createElement('td');
              var id = i+1;
              td.id='com-'+id;
-             td.innerText=res[3][i];
+             td.innerText=res[3][i][0]+'-'+res[3][i][1];
              td.classList.add("titletd")
              tr.appendChild(td);
              tbl.appendChild(tr);
