@@ -88,7 +88,7 @@ table{
             let td = document.createElement('td');
              var id = i+1;
              td.id='com-'+id;
-             td.innerText=res[3][i][0]+'-'+res[3][i][1];
+             td.innerText=res[3][i][1]+'：'+res[3][i][0];
              td.classList.add("titletd")
              tr.appendChild(td);
              tbl.appendChild(tr);
@@ -113,6 +113,9 @@ table{
             var comment = document.getElementById('newc').value;
             var confirm =window.confirm("送信します");
             if(confirm){
+              if(!comment){
+                alert('入力してください');
+              }else{
             var locationg = runOpen();
             var form = url+"?page=comment&id="+data+"&comment="+comment+userinfo;
       fetch(form,{
@@ -125,7 +128,8 @@ table{
               location.href='./login.html';
             }
         });
-        }else{}
+        }
+      }
       }
         function runOpen(){
     document.getElementById("runArea").className = 'runBg';
