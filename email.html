@@ -75,7 +75,7 @@ body {
               var confirm =window.confirm("送信します");
             if(confirm){
               var loading = runOpen();
-            var form = url+"?page=mail&mail="+mail+"&name="+name+userinfo;
+            var form = url+"?page=mail&newmail="+mail+"&newname="+name+userinfo;
       fetch(form,{
         method:"GET",
       }).then(response => response.text())
