@@ -31,12 +31,23 @@
     </style>
     <script>
         function set(){
-            var username = document.getElementById('username').value;
-            var mail = document.getElementById('mail').value;
+            var nusername = document.getElementById('username').value;
+            var nmail = document.getElementById('mail').value;
+            
+            localStorage.setItem('mail',nmail);
+            localStorage.setItem('username',nusername);
+
+            const url = "https://script.google.com/macros/s/AKfycbw5fwPttBRBZCbPatGb615monOctCKtLqA7LojTcWfBDRMkOsFDofrYRhp7Vm7TUVK9LQ/exec"
+const username = localStorage.getItem('username');
+const mail = localStorage.getItem('mail');
+
+            
+            var nusername = localStorage.getItem('username');
+            var nmail = localStorage.getItem('mail');
+var index = url+'?page=login&mail='+mail+'&name='+username;
             var locationg = runOpen();
-            var url = "https://script.google.com/macros/s/AKfycbw5fwPttBRBZCbPatGb615monOctCKtLqA7LojTcWfBDRMkOsFDofrYRhp7Vm7TUVK9LQ/exec";
-    var form = url+"?page=login&mail="+mail+"&name="+username;
-      fetch(form,{
+            console.log(index);
+            fetch(index,{
         method:"GET",
       }).then(response => response.text())
         .then(text => {
