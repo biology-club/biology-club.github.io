@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <head>
+  <title>実験ー玉島高校生物部</title>
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
     <link rel="stylesheet" href="./loading.css">
     <style>
@@ -57,85 +58,49 @@ table{
     float:right;
     width:9%;
 }
+.mycomment{
+  cursor:text;
+}
+.titletd{
+  cursor: default;
+}
+.nametd{
+  border-right:hidden;
+  width:120px;
+  cursor: default;
+}
+#editing{
+    width:80%;
+    height: 20px;
+    outline: none;
+    border: none;
+}
+#deletecom{
+  display:none;
+position:relative;
+top:0px;
+left:0px;
+background:#fff;
+width:100px;
+padding:3px;
+margin:0;
+border:2px solid #acc;
+list-style-type:none;
+cursor: pointer;
+}
+#edited{
+  float: right;
+  width: 50px;
+  display: flex;
+}
+#change{
+  text-align: center;
+}
+#ulo{
+  position:absolute;
+}
     </style>
-    <script>
-        const username = localStorage.getItem('username');
-        const usermail = localStorage.getItem('mail');
-        const userinfo = "&name="+username+"&mail="+usermail;
-        var query = location.search;
-    var value = query.split('=');
-    var data = decodeURIComponent(value[1]);
-    var url = "https://script.google.com/macros/s/AKfycbw5fwPttBRBZCbPatGb615monOctCKtLqA7LojTcWfBDRMkOsFDofrYRhp7Vm7TUVK9LQ/exec";
-    var form = url+"?page=more&id="+data+userinfo;
-      fetch(form,{
-        method:"GET",
-      }).then(response => response.text())
-        .then(text => {
-          if(text=='blocked'){
-              location.href='./login.html';
-            }else{
-            var res =JSON.parse(text);
-            console.log(res);
-            var title = res[0];
-            var detail = res[1];
-            document.getElementById('title').innerText=title;
-            document.getElementById('detail').innerText=detail;
-
-
-            for(i=0;i<res[3].length;i++){
-            let tbl = document.getElementById('comment');
-            let tr = document.createElement('tr');
-            let td = document.createElement('td');
-             var id = i+1;
-             td.id='com-'+id;
-             td.innerText=res[3][i][1]+'：'+res[3][i][0];
-             td.classList.add("titletd")
-             tr.appendChild(td);
-             tbl.appendChild(tr);
-            }
-           if(res[3].length<1){
-            let tbl = document.getElementById('comment');
-            let tr = document.createElement('tr');
-            let td = document.createElement('td');
-            td.innerText='コメントはありません';
-               tr.appendChild(td);
-               tbl.appendChild(tr);
-            }else{}
-            let tbl = document.getElementById('comment');
-            let tr = document.createElement('tr');
-            let td = document.createElement('td');
-            td.innerHTML='<input id="newc" type="text" placeholder="コメントを追加"><button type="button" id="sub" onclick="subcom()">送信</button>'
-               tr.appendChild(td);
-               tbl.appendChild(tr);
-          }
-        });
-        function subcom(){
-            var comment = document.getElementById('newc').value;
-            var confirm =window.confirm("送信します");
-            if(confirm){
-              if(!comment){
-                alert('入力してください');
-              }else{
-            var locationg = runOpen();
-            var form = url+"?page=comment&id="+data+"&comment="+comment+userinfo;
-      fetch(form,{
-        method:"GET",
-      }).then(response => response.text())
-        .then(text => {
-            if(text=='success'){
-                location.reload();
-            }else if(text=='blocked'){
-              location.href='./login.html';
-            }
-        });
-        }
-      }
-      }
-        function runOpen(){
-    document.getElementById("runArea").className = 'runBg';
-    return false;
-  }
-    </script>
+<script src="./more.js"></script>
 </head>
 <body>
     <header id="header">
@@ -160,7 +125,7 @@ table{
     </table>
 </div>
 <table border="1" style="margin-top:10px;" id="comment">
-    <th>コメント</th>
+    <th colspan="2">コメント</th>
 </table>
 <!-- 実行中ウインドウのエリア -->
 <div id="runArea" class="runNoDisp">
