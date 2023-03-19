@@ -42,6 +42,7 @@ fetch(index , {
   content.appendChild(contributor);
    out.appendChild(content);
   }
+  document.getElementById('username').innerText=username;
   document.getElementById('loading').remove();
 }
 })
