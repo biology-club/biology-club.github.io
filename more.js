@@ -17,6 +17,18 @@ method:"GET",
     console.log(res);
     var title = res[0];
     var detail = res[1];
+    var contributer = res[4];
+    if(username==contributer){
+        var idcon = document.getElementById('contributer');
+        idcon.innerHTML="";
+        let button = document.createElement('button');
+        button.innerText='削除';
+        button.setAttribute('onclick','deleteTitle()');
+        button.classList.add('deleteTitle');
+        idcon.appendChild(button);
+    }else{
+        document.getElementById('contributer').innerText=contributer;
+    }
     document.getElementById('title').innerText=title;
     document.getElementById('detail').innerText=detail;
 
@@ -106,7 +118,7 @@ function change(id){
     var value = document.getElementById('editing').value;
     console.log(value);
     console.log('changed'+num);
-    var confirm =window.confirm("変更します");
+    var confirm =window.confirm("コメントを変更します");
     if(confirm){
         var locationg = runOpen();
         var form = url+"?page=changecom&title="+data+"&comid="+num+'&changedcom='+value+userinfo;
@@ -126,7 +138,7 @@ function change(id){
 function deletefunc(id){
     var num = String(id);
     console.log('comid='+num+'titleid='+data);
-    var confirm =window.confirm("削除します");
+    var confirm =window.confirm("コメントを削除します");
     if(confirm){
         var locationg = runOpen();
         var form = url+"?page=deletecom&title="+data+"&comid="+num+userinfo;
@@ -152,4 +164,24 @@ function cancel(id){
     cell.classList.add("mycomment");
     cell.setAttribute('onclick', 'editcom(this.id)');
     location.reload();
+}
+
+function deleteTitle(){
+    var confirm =window.confirm("スレッドを削除します");
+    if(confirm){
+        var locationg = runOpen();
+        var form = url+"?page=deleteTitle&title="+data+userinfo;
+    fetch(form,{
+    method:"GET",
+    }).then(response => response.text())
+    .then(text => {
+        if(text=='success'){
+            location.href='./index.html';
+        }else if(text=='blocked'){
+          location.href='./login.html';
+        }
+    });
+    }else{
+    }
+
 }
