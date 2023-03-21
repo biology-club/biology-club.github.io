@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <head>
-    <link rel="stylesheet" href="./loading.css">
+    <link rel="stylesheet" href="./standard.css">
     <style>
         body{
             background-color: white;
@@ -13,21 +13,6 @@
             margin:0 auto;
             margin-top: 100px;
         }
-        #header {
-            height: 70px;
-    width: 100%;
-    background-color: #99CC00;
-  }
-  #header p{
-    overflow: hidden;
-    margin: 0 auto;
-    width: 100%;
-    max-width: 1000px;
-    float: left;
-    margin: 22px 0 0;
-    font-size: 1.4rem;
-    font-weight: 700;
-  }
     </style>
     <script>
         function set(){
@@ -81,7 +66,14 @@ var index = url+'?page=login&mail='+mail+'&name='+username;
 </head>
 <body>
     <header id="header">
-        <p>ログインページ</p>
+      <div class="wrapper">
+          <div id="head-left">
+        <p class="logo">ログインページ</p>
+        </div>
+        <div id="head-center"></div>
+        <div id="head-right">
+        </div>
+      </div>
     </header>
     <div class="form">
     <label for="username">名前を入力してください</label><br>

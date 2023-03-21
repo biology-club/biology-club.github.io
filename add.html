@@ -1,47 +1,13 @@
 <!DOCTYPE html>
 <head>
     <title>新規追加</title>
-    <link rel="stylesheet" href="./loading.css">
+    <link rel="stylesheet" href="./standard.css">
     <style>
             body {
   font-family: 'Noto Sans JP', sans-serif;
   color: #222;
-  background-color: #99CC99	;
 }
 
-/* header
------------------------------- */
-#header {
-  width: 100%;
-  background-color: #99CC00;
-}
-#header .wrapper {
-  overflow: hidden;
-  margin: 0 auto;
-  width: 100%;
-  max-width: 1000px;
-}
-
-#header p {
-  float: left;
-  margin: 22px 0 0;
-  font-size: 1.4rem;
-  font-weight: 700;
-}
-
-#header ul {
-  float: right;
-  margin: 28px 0;
-  font-size: 0.9rem;
-  font-weight: 500;
-}
-#header ul li {
-  float: left;
-  margin-right: 40px;
-}
-#header ul li:last-child {
-  margin-right: 0;
-}
 #add{
     margin-top:30px;
 }
@@ -97,17 +63,23 @@
     </script>
 </head>
 <body>
-    <header id="header">
-        <div class="wrapper">
-          <p class="logo"><a href="./index.html">玉島高校生物部</a></p>
-          <nav>
-            <ul>
-              <li><a href="https://docs.google.com/spreadsheets/d/1Ks1QQx-tKyQUobQdTFQcHlQYtjEYllgQQlmHHJ7_oZY/edit?usp=sharing">予定表</a></li>
-              <li><a href="./email.html">メールアドレスの登録</a></li>
-            </ul>
-          </nav>
-        </div>
-      </header>
+  <header id="header">
+    <div class="wrapper">
+        <div id="head-left">
+      <p class="logo"><a href="./index.html">玉島高校生物部</a></p>
+      </div>
+      <div id="head-center"></div>
+      <div id="head-right">
+      <nav>
+        <ul>
+          <li><a href="https://docs.google.com/spreadsheets/d/1Ks1QQx-tKyQUobQdTFQcHlQYtjEYllgQQlmHHJ7_oZY/edit?usp=sharing">予定表</a></li>
+          <li><a href="./email.html">メールアドレスの登録</a></li>
+          <li id="username"></li>
+        </ul>
+      </nav>
+      </div>
+    </div>
+  </header>
   <div id="add">
     <div id="add1">
     <label for="topic">タイトルを入力してください</label><br>
