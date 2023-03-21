@@ -68,7 +68,11 @@
     
   }
   .logo{
-    padding-left: 30px;
+    width: 100%;
+    text-align: center;
+  }
+  .logo a {
+    text-decoration:none;
   }
   #header p {
     float: left;
