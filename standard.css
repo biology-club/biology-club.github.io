@@ -92,7 +92,7 @@
     background-image: linear-gradient(to right top, transparent calc(50% - 2px), #99CC00 50%, #99CC00 calc(50% + 2px), transparent calc(50% + 4px))
   }
   #head-right{
-    width:75%;
+    width:75.1%;
     float:right;
     height:70px;
     border-bottom: 4px solid #99CC00;
