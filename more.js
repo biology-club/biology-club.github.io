@@ -5,7 +5,7 @@ var query = location.search;
 var value = query.split('=');
 var data = decodeURIComponent(value[1]);
 console.log('ver ER');
-if(data=4){alert('エラーが発生したため削除しました。\n現在表示できません。');}
+if(data=4){alert('エラーが発生したため削除しました。\n現在表示できません。');}else{
 var url = "https://script.google.com/macros/s/AKfycbw5fwPttBRBZCbPatGb615monOctCKtLqA7LojTcWfBDRMkOsFDofrYRhp7Vm7TUVK9LQ/exec";
 var form = url+"?page=more&id="+data+userinfo;
 fetch(form,{
@@ -71,7 +71,7 @@ method:"GET",
        tr.appendChild(td);
        tbl.appendChild(tr);
   }
-});
+});}
 function subcom(){
     var comment = document.getElementById('newc').value;
     var confirm =window.confirm("送信します");
