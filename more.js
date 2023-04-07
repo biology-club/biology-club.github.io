@@ -66,7 +66,8 @@ method:"GET",
     let tr = document.createElement('tr');
     let td = document.createElement('td');
     td.colSpan='2';
-    td.innerHTML='<input id="newc" type="text" placeholder="コメントを追加"><button type="button" id="sub" onclick="subcom()">送信</button>';
+    td.id='newCommentTd';
+    td.innerHTML='<textarea id="newc" placeholder="コメントを追加"></textarea><button type="button" id="sub" onclick="subcom()">送信</button>';
        tr.appendChild(td);
        tbl.appendChild(tr);
   }
@@ -102,7 +103,7 @@ function editcom(id){
     var now = edit.innerText;
     localStorage.setItem('editing',now);
     edit.removeAttribute("onclick");
-    edit.innerHTML='<input type="text" value="'+now+'" id="editing"></input><div id="edited"><div id="change">変更</div><div id="ulo"><ul id="deletecom"><li onclick="change('+id+')">変更</li><li onclick="deletefunc('+id+')">削除</li><li onclick="cancel('+id+')">キャンセル</li></ul></div></div>';
+    edit.innerHTML='<textarea id="editing">'+now+'</textarea><div id="edited"><div id="change">変更</div><div id="ulo"><ul id="deletecom"><li onclick="change('+id+')">変更</li><li onclick="deletefunc('+id+')">削除</li><li onclick="cancel('+id+')">キャンセル</li></ul></div></div>';
     
 document.getElementById("edited").addEventListener("mouseover", function(){
 	document.getElementById("deletecom").style.display = 'block';
@@ -206,3 +207,6 @@ while(result !== res) {
 }
 return result
   }
+
+
+  console.log("js-3261a61")

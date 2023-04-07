@@ -72,3 +72,5 @@ function moreButton(id){
 function opendrive(){
   location.href="https://drive.google.com/drive/folders/1osnVxVzObKBF5jr0Wg26dGQqTvOQqrKg";
 }
+
+console.log('js-3261a61');
