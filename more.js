@@ -4,6 +4,7 @@ const userinfo = "&name="+username+"&mail="+usermail;
 var query = location.search;
 var value = query.split('=');
 var data = decodeURIComponent(value[1]);
+console.log(data);
 var url = "https://script.google.com/macros/s/AKfycbw5fwPttBRBZCbPatGb615monOctCKtLqA7LojTcWfBDRMkOsFDofrYRhp7Vm7TUVK9LQ/exec";
 var form = url+"?page=more&id="+data+userinfo;
 fetch(form,{
@@ -71,7 +72,7 @@ method:"GET",
   }
 });
 function subcom(){
-    var comment = document.getElementById('newc').value;
+    var comment = makestring(document.getElementById('newc').value);
     var confirm =window.confirm("送信します");
     if(confirm){
       if(!comment){
@@ -115,7 +116,7 @@ document.getElementById("edited").addEventListener("mouseout", function(){
 }
 function change(id){
     var num = String(id);
-    var value = document.getElementById('editing').value;
+    var value = makestring(document.getElementById('editing').value);
     console.log(value);
     console.log('changed'+num);
     var confirm =window.confirm("コメントを変更します");
@@ -185,3 +186,19 @@ function deleteTitle(){
     }
 
 }
+
+function makestring(value){
+    var str = value;
+var res = str.replace('&', '＆');
+while(res !== str) {
+    str = str.replace('&', '＆');
+    res = res.replace('&', '＆');
+}
+
+var result = res.replace('?', '？');
+while(result !== res) {
+    res = res.replace('?', '？');
+    result = result.replace('?', '？');
+}
+return result
+  }

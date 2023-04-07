@@ -35,8 +35,9 @@
         const usermail = localStorage.getItem('mail');
         const userinfo = "&name="+username+"&mail="+usermail;
         function submit(){
-            var topic = document.getElementById('topic').value;
-            var detail = document.getElementById('detail').value;
+            var topic = makestring(document.getElementById('topic').value);
+            var detail = makestring(document.getElementById('detail').value);
+            console.log(detail);
             if(!topic||!detail){
                 alert('すべて入力してください');
             }else{
@@ -59,6 +60,26 @@
         function runOpen(){
     document.getElementById("runArea").className = 'runBg';
     return false;
+  }
+
+  function makestring(value){
+    var str = value.replace(/\n/g,"$").replace(/\r/g,"");
+    while(str !==value){
+      value = value.replace(/\n/g,"$").replace(/\r/g,"");
+      str = str.replace(/\n/g,"$").replace(/\r/g,"");
+    }
+var res = str.replace('&', '＆');
+while(res !== str) {
+    str = str.replace('&', '＆');
+    res = res.replace('&', '＆');
+}
+
+var result = res.replace('?', '？');
+while(result !== res) {
+    res = res.replace('?', '？');
+    result = result.replace('?', '？');
+}
+return result
   }
     </script>
 </head>
