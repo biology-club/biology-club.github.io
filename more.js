@@ -188,7 +188,11 @@ function deleteTitle(){
 }
 
 function makestring(value){
-    var str = value;
+    var str = value.replace(/\n/g,"$").replace(/\r/g,"");
+    while(str !==value){
+      value = value.replace(/\n/g,"$").replace(/\r/g,"");
+      str = str.replace(/\n/g,"$").replace(/\r/g,"");
+    }
 var res = str.replace('&', '＆');
 while(res !== str) {
     str = str.replace('&', '＆');
