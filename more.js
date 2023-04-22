@@ -6,7 +6,7 @@ var query = location.search;
 var value = query.split('=');
 var data = decodeURIComponent(value[1]);
 console.log(data);
-const url = "https://script.google.com/macros/s/AKfycbzw205Dy8Vc_4Jr_MlTIvlRRaBWF8VigmMKeJLC97eQpGGHuOd1NsOg-eWdX7lFpiWD/exec";
+const url = "https://script.google.com/macros/s/AKfycbw5fwPttBRBZCbPatGb615monOctCKtLqA7LojTcWfBDRMkOsFDofrYRhp7Vm7TUVK9LQ/exec";
 var form = url+"?page=more&id="+data+userinfo;
 fetch(form,{
 method:"GET",
