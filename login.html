@@ -9,43 +9,52 @@
             margin-left: 30px;
         }
         .form{
-            width: 300px;
+            width: 400px;
             margin:0 auto;
             margin-top: 100px;
+        }
+        input{
+            width:100%;
+        }
+        #forgot{
+            margin: 0 0 0 0;
+            margin-bottom: 0;
+            color: blue;
+            cursor: pointer;
         }
     </style>
     <script>
         function set(){
-            var nusername = document.getElementById('username').value;
-            var nmail = document.getElementById('mail').value;
-            if(!username||!nmail){
+            var npassword = document.getElementById('password').value;
+            var nmail = document.getElementById('usermail').value;
+            if(!npassword||!nmail){
                 alert('入力してください');
             }else{
             
             localStorage.setItem('mail',nmail);
-            localStorage.setItem('username',nusername);
+            localStorage.setItem('password',npassword);
 
-            const url = "https://script.google.com/macros/s/AKfycbw5fwPttBRBZCbPatGb615monOctCKtLqA7LojTcWfBDRMkOsFDofrYRhp7Vm7TUVK9LQ/exec"
-const username = localStorage.getItem('username');
+            const url = "https://script.google.com/macros/s/AKfycbzw205Dy8Vc_4Jr_MlTIvlRRaBWF8VigmMKeJLC97eQpGGHuOd1NsOg-eWdX7lFpiWD/exec"
+const password = localStorage.getItem('password');
 const mail = localStorage.getItem('mail');
 
             
-            var nusername = localStorage.getItem('username');
-            var nmail = localStorage.getItem('mail');
-var index = url+'?page=login&mail='+mail+'&name='+username;
+var index = url+'?page=login&mail='+mail+'&password='+password;
             var locationg = runOpen();
             console.log(index);
             fetch(index,{
         method:"GET",
       }).then(response => response.text())
         .then(text => {
-            if(text=='success'){
-            localStorage.setItem('mail',mail);
-            localStorage.setItem('username',username);
+            var array = JSON.parse(text);
+            localStorage.setItem('username',array[1]);
+            if(array[0]=='success'){
+            alert('ログインしました。再読み込みします');
             location.href='./index.html';
             }else{
                 alert('ログインできませんでした');
                 location.reload();
+                console.log(array);
             }
         });
             }    
@@ -66,6 +75,15 @@ var index = url+'?page=login&mail='+mail+'&name='+username;
     document.getElementById("runArea").className = 'runBg';
     return false;
   }
+  function forpas(){
+    var forgot = document.getElementById('forgot');
+    forgot.remove();
+    var newa = document.createElement('a');
+    newa.href = "./forgotpass.html";
+    newa.innerHTML = "パスワード忘れた場合";
+    document.getElementById('form').appendChild(newa);
+    alert('初期パスワードはpassです。');
+}
   console.log('3261a61');
     </script>
 </head>
@@ -80,11 +98,13 @@ var index = url+'?page=login&mail='+mail+'&name='+username;
         </div>
       </div>
     </header>
-    <div class="form">
-    <label for="username">名前を入力してください</label><br>
-    <input type="text" id="username"><br>
-    <label for="mail">メールアドレスを入力してください</label><br>
-    <input type="text" id="mail"><br>
+    <p style="color:red;">　システムの更新作業を行いました。このメッセージがなくなるまで、操作しないでください。</p>
+    <div class="form" id="form">
+    <label for="usermail">メールアドレスを入力してください</label><br>
+    <input type="text" id="usermail"><br>
+    <label for="password">パスワードを入力してください</label><br>
+    <input type="text" id="password"><br>
+    <p href="" id="forgot" onclick="forpas()">パスワードがわからない場合</p>
     <br>
     <button type="button" onclick="set()">ログイン</button>
     <button type="button" id="clear" onclick="localStorage.clear();">ログアウト</button>

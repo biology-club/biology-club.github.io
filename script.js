@@ -1,11 +1,12 @@
-const url = "https://script.google.com/macros/s/AKfycbw5fwPttBRBZCbPatGb615monOctCKtLqA7LojTcWfBDRMkOsFDofrYRhp7Vm7TUVK9LQ/exec"
+const url = "https://script.google.com/macros/s/AKfycbzw205Dy8Vc_4Jr_MlTIvlRRaBWF8VigmMKeJLC97eQpGGHuOd1NsOg-eWdX7lFpiWD/exec";
 const username = localStorage.getItem('username');
 const mail = localStorage.getItem('mail');
-if(!mail||!username){
+const pass = localStorage.getItem('password');
+if(!mail||!username||!pass){
   location.href="./login.html";
 }else{
-console.log('username='+username+',mail='+mail);
-var index = url+'?mail='+mail+'&name='+username;
+console.log('username='+username+',mail='+mail+',pass='+pass);
+var index = url+'?mail='+mail+'&name='+username+'&password='+pass;
 fetch(index , {
   method: "GET",
 }).then(response => response.text())
@@ -42,7 +43,6 @@ fetch(index , {
   content.appendChild(contributor);
    out.appendChild(content);
   }
-  document.getElementById('username').innerText=username;
   document.getElementById('loading').remove();
 }
 })
@@ -55,7 +55,7 @@ function goodButton(id){
   var sp = id.split('-');
   var te = sp[1];
   console.log(te);
-  var form = url+"?page=good&id="+te+"&mail="+mail+"&name="+name;
+  var form = url+"?page=good&id="+te+"&mail="+mail+"&name="+name+'&password='+pass;
   fetch(form,{
     method:"GET",
   }).then(response => response.text())
@@ -72,5 +72,6 @@ function moreButton(id){
 function opendrive(){
   location.href="https://drive.google.com/drive/folders/1osnVxVzObKBF5jr0Wg26dGQqTvOQqrKg";
 }
+
 
 console.log('js-3261a61');

@@ -30,10 +30,11 @@
 }
     </style>
     <script>
-        const url = "https://script.google.com/macros/s/AKfycbw5fwPttBRBZCbPatGb615monOctCKtLqA7LojTcWfBDRMkOsFDofrYRhp7Vm7TUVK9LQ/exec";
+      const url = "https://script.google.com/macros/s/AKfycbzw205Dy8Vc_4Jr_MlTIvlRRaBWF8VigmMKeJLC97eQpGGHuOd1NsOg-eWdX7lFpiWD/exec";
         const username = localStorage.getItem('username');
         const usermail = localStorage.getItem('mail');
-        const userinfo = "&name="+username+"&mail="+usermail;
+        const pass = localStorage.getItem('password');
+        const userinfo = "&name="+username+"&mail="+usermail+"&password="+pass;
         function submit(){
             var topic = makestring(document.getElementById('topic').value);
             var detail = makestring(document.getElementById('detail').value);
@@ -81,6 +82,7 @@ while(result !== res) {
 }
 return result
   }
+  console.log('html,js-8e7a4cc');
     </script>
 </head>
 <body>
@@ -118,4 +120,3 @@ return result
   </div>
 </div>
 </body>
-8e7a4cc

@@ -1,11 +1,12 @@
 const username = localStorage.getItem('username');
 const usermail = localStorage.getItem('mail');
-const userinfo = "&name="+username+"&mail="+usermail;
+const pass = localStorage.getItem('password');
+const userinfo = "&name="+username+"&mail="+usermail+'&password='+pass;
 var query = location.search;
 var value = query.split('=');
 var data = decodeURIComponent(value[1]);
 console.log(data);
-var url = "https://script.google.com/macros/s/AKfycbw5fwPttBRBZCbPatGb615monOctCKtLqA7LojTcWfBDRMkOsFDofrYRhp7Vm7TUVK9LQ/exec";
+const url = "https://script.google.com/macros/s/AKfycbzw205Dy8Vc_4Jr_MlTIvlRRaBWF8VigmMKeJLC97eQpGGHuOd1NsOg-eWdX7lFpiWD/exec";
 var form = url+"?page=more&id="+data+userinfo;
 fetch(form,{
 method:"GET",
@@ -188,7 +189,12 @@ function deleteTitle(){
 
 }
 
-function makestring(value){
+function makestring(before){
+    var value = before.replace("$","＄");
+    while(value !== before) {
+        before = before.replace('$', '＄');
+        value = value.replace('$', '＄');
+    }
     var str = value.replace(/\n/g,"$").replace(/\r/g,"");
     while(str !==value){
       value = value.replace(/\n/g,"$").replace(/\r/g,"");
@@ -209,4 +215,4 @@ return result
   }
 
 
-  console.log("js-3261a61")
+  console.log("js-acffc65")

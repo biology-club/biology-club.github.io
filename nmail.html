@@ -5,7 +5,7 @@
         var query = location.search;
     var value = query.split('=');
     var mail = decodeURIComponent(value[1]);
-    var url = "https://script.google.com/macros/s/AKfycbw5fwPttBRBZCbPatGb615monOctCKtLqA7LojTcWfBDRMkOsFDofrYRhp7Vm7TUVK9LQ/exec";
+    const url = "https://script.google.com/macros/s/AKfycbzw205Dy8Vc_4Jr_MlTIvlRRaBWF8VigmMKeJLC97eQpGGHuOd1NsOg-eWdX7lFpiWD/exec";
     var form = url+"?page=cmail&mail="+mail;
       fetch(form,{
         method:"GET",
@@ -13,32 +13,60 @@
         .then(text => {
           document.getElementById('loading').remove();
           if(text==""){
-            location.href='./index.html';
+            location.href="./index.html";
+            //**変更必至*/
           }else{
-          var btn = document.createElement('button');
-          btn.innerHTML=text;
-          btn.setAttribute('onclick', 'rgd()');
-          btn.classList.add("register");
-          btn.id='register';
-          btn.value=text;
-          console.log(btn);
-          document.body.appendChild(btn);
+        var doc = document.getElementById('center');
+          var n = document.createElement('p');
+              n.innerHTML = "名前";
+          var p = document.createElement('p');
+              p.innerHTML=text;
+              p.id = "username";
+          var l = document.createElement('p');
+              l.innerHTML = "パスワードを設定してください";
+          var i = document.createElement('input');
+              i.type ="text";
+              i.id = "pas";
+          var r = document.createElement('p');
+              r.innerHTML = "確認：もう一度パスワードを入力してください";
+          var c = document.createElement('input');
+              c.type = "text";
+              c.id = "check";
+          var b = document.createElement('button');
+              b.innerText = "設定";
+              b.setAttribute('onclick', 'rgd()');
+              doc.appendChild(n);
+              doc.appendChild(p);
+              doc.appendChild(l);
+              doc.appendChild(i);
+              doc.appendChild(r);
+              doc.appendChild(c);
+              doc.appendChild(b);
           }
         });
         function rgd(){
+            var pass = document.getElementById('pas').value;
+            var check = document.getElementById('check').value;
+            if(!pass){
+              alert("パスワードを設定してください");
+            }else if(pass!==check){
+              alert('パスワードが一致しません');
+            }else{
             var locatione = runOpen();
-            var send = url+"?page=rmail&mail="+mail;
+            var send = url+"?page=rmail&mail="+mail+"&password="+pass;
             fetch(send,{
         method:"GET",
       }).then(response => response.text())
         .then(text => {
             if(text=="success"){
-              var username = document.getElementById('register').value;
+              var username = document.getElementById('username').innerText;
               localStorage.setItem('mail',mail);
               localStorage.setItem('username',username);
+              localStorage.setItem('password',pass);
                 location.href='./index.html';
             }
         });
+      }
         }
         function runOpen(){
     document.getElementById("runArea").className = 'runBg';
@@ -51,7 +79,6 @@
    top: 50%;
    left: 50%;
    transform: translate(-50%,-50%);
-            text-align: center;
         }
         .register{
             min-width:100px;
@@ -78,9 +105,9 @@
     </div>
   </header>
     <div>
-        <p>生物部、メールアドレス登録の認証ページです。下の名前が正しい場合はクリックしてください。</p>
+        <p>生物部、メールアドレス登録の認証ページです。下の名前を確認し、パスワードを設定してください。</p>
     </div>
-    <div class="center">
+    <div class="center" id="center">
       <span class="loading" id="loading"><span>読</span><span>み</span><span>込</span><span>み</span><span>中</span></span>
     </div>
     <!-- 実行中ウインドウのエリア -->

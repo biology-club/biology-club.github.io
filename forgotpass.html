@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>パスワード確認</title>
+    <link rel="stylesheet" href="./standard.css">
+    <style>
+        #center{
+            width: 300px;
+            margin: 0 auto;
+            margin-top: 50px;
+        }
+        #center input{
+            width: 100%;
+        }
+    </style>
+    <script>
+        function sub(){
+            var name = document.getElementById('name').value;
+            var mail = document.getElementById('mail').value;
+            if(!name||!mail){
+                alert('すべて入力してください');
+            }else{
+            const url = "https://script.google.com/macros/s/AKfycbzw205Dy8Vc_4Jr_MlTIvlRRaBWF8VigmMKeJLC97eQpGGHuOd1NsOg-eWdX7lFpiWD/exec";
+            var form = url+"?page=getpass&mail="+mail+"&name="+name;
+    document.getElementById("runArea").className = 'runBg';
+            fetch(form,{
+        method:"GET",
+      }).then(response => response.text())
+        .then(text => {
+            if(text=="success"){
+                alert('メールを送信しました');
+                location.href="./login.html";
+            }else{
+                alert('拒否されました。記入項目を再確認してください');
+                document.getElementById('runArea').className = "runNoDisp";
+            }
+        })
+            }
+        }
+    </script>
+</head>
+<body>
+    <header id="header">
+        <div class="wrapper">
+            <div id="head-left">
+          <p class="logo"><a href="./index.html">パスワードの確認</a></p>
+          </div>
+          <div id="head-center"></div>
+          <div id="head-right">
+          </div>
+        </div>
+      </header>
+    <div id="center">
+        <p style="margin-bottom: 0;">パスワードの確認ページです。</p>
+        <p style="margin-top:0;margin-bottom:20px;">下の項目を入力し、パスワードを確認してください</p>
+        <label for="name">名前を入力してください</label><br>
+    <input type="text" id="name"><br>
+    <label for="mail">メールアドレスを入力してください</label><br>
+    <input type="text" id="mail"><br>
+    <button type="button" onclick="sub()">確認メールを送信する</button>
+    </div>
+          <!-- 実行中ウインドウのエリア -->
+<div id="runArea" class="runNoDisp">
+    <div class="runWindow"> <!-- ここがウインドウとなります -->
+      <p>実行中<br>しばらくお待ちください</p>
+      <div class="bar"></div>
+    </div>
+  </div>
+</body>
+</html>
