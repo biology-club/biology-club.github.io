@@ -6,8 +6,8 @@ var query = location.search;
 var value = query.split('=');
 var data = decodeURIComponent(value[1]);
 console.log(data);
-const url = "https://script.google.com/macros/s/AKfycbw5fwPttBRBZCbPatGb615monOctCKtLqA7LojTcWfBDRMkOsFDofrYRhp7Vm7TUVK9LQ/exec";
-var form = url+"?page=more&id="+data+userinfo;
+const url = "https://script.google.com/macros/s/AKfycbzw205Dy8Vc_4Jr_MlTIvlRRaBWF8VigmMKeJLC97eQpGGHuOd1NsOg-eWdX7lFpiWD/exec";
+var form = url+"?page=more&key="+data+userinfo;
 fetch(form,{
 method:"GET",
 }).then(response => response.text())
@@ -18,7 +18,7 @@ method:"GET",
     var res =JSON.parse(text);
     console.log(res);
     var title = res[0];
-    var detail = res[1];
+    var detail = res[2];
     var contributer = res[4];
     if(username==contributer){
         var idcon = document.getElementById('contributer');
@@ -81,7 +81,7 @@ function subcom(){
         alert('入力してください');
       }else{
     var locationg = runOpen();
-    var form = url+"?page=comment&id="+data+"&comment="+comment+userinfo;
+    var form = url+"?page=comment&key="+data+"&comment="+comment+userinfo;
 fetch(form,{
 method:"GET",
 }).then(response => response.text())
@@ -124,7 +124,7 @@ function change(id){
     var confirm =window.confirm("コメントを変更します");
     if(confirm){
         var locationg = runOpen();
-        var form = url+"?page=changecom&title="+data+"&comid="+num+'&changedcom='+value+userinfo;
+        var form = url+"?page=changecom&key="+data+"&comid="+num+'&changedcom='+value+userinfo;
     fetch(form,{
     method:"GET",
     }).then(response => response.text())
@@ -140,11 +140,11 @@ function change(id){
 }
 function deletefunc(id){
     var num = String(id);
-    console.log('comid='+num+'titleid='+data);
+    console.log('comid='+num+'key='+data);
     var confirm =window.confirm("コメントを削除します");
     if(confirm){
         var locationg = runOpen();
-        var form = url+"?page=deletecom&title="+data+"&comid="+num+userinfo;
+        var form = url+"?page=deletecom&key="+data+"&comid="+num+userinfo;
     fetch(form,{
     method:"GET",
     }).then(response => response.text())
@@ -173,7 +173,7 @@ function deleteTitle(){
     var confirm =window.confirm("スレッドを削除します");
     if(confirm){
         var locationg = runOpen();
-        var form = url+"?page=deleteTitle&title="+data+userinfo;
+        var form = url+"?page=deleteTitle&key="+data+userinfo;
     fetch(form,{
     method:"GET",
     }).then(response => response.text())

@@ -49,7 +49,7 @@ var index = url+'?page=login&mail='+mail+'&password='+password;
             var array = JSON.parse(text);
             localStorage.setItem('username',array[1]);
             if(array[0]=='success'){
-            alert('ログインしました。再読み込みします');
+            alert('ログインできました');
             location.href='./index.html';
             }else{
                 alert('ログインできませんでした');

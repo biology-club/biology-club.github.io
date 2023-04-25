@@ -1,4 +1,4 @@
-const url = "https://script.google.com/macros/s/AKfycbw5fwPttBRBZCbPatGb615monOctCKtLqA7LojTcWfBDRMkOsFDofrYRhp7Vm7TUVK9LQ/exec";
+const url = "https://script.google.com/macros/s/AKfycbzw205Dy8Vc_4Jr_MlTIvlRRaBWF8VigmMKeJLC97eQpGGHuOd1NsOg-eWdX7lFpiWD/exec";
 const username = localStorage.getItem('username');
 const mail = localStorage.getItem('mail');
 const pass = localStorage.getItem('password');
@@ -21,8 +21,9 @@ fetch(index , {
   
   let content = document.createElement('p');
   let link = document.createElement('p');
-  var id = i+1;
-  link.id='tit-'+id;
+  let key = res[i][4];
+
+  link.id='tit-'+key;
   link.setAttribute('onclick', 'moreButton(this.id)');
   link.innerText=res[i][0];
   content.classList.add("content");
@@ -30,7 +31,7 @@ fetch(index , {
 
   let good = document.createElement('p');
   good.innerText='賛同数：'+res[i][1];
-  good.id='good-'+id;
+  good.id='good-'+key;
   good.setAttribute('onclick', 'goodButton(this.id)');
   good.classList.add("good");
 
@@ -55,7 +56,7 @@ function goodButton(id){
   var sp = id.split('-');
   var te = sp[1];
   console.log(te);
-  var form = url+"?page=good&id="+te+"&mail="+mail+"&name="+name+'&password='+pass;
+  var form = url+"?page=good&key="+te+"&mail="+mail+"&name="+name+'&password='+pass;
   fetch(form,{
     method:"GET",
   }).then(response => response.text())
@@ -67,7 +68,7 @@ function goodButton(id){
 function moreButton(id){
   var sp = id.split('-');
   var te = sp[1];
-  location.href="./more.html?id="+te;
+  location.href="./more.html?key="+te;
 }
 function opendrive(){
   location.href="https://drive.google.com/drive/folders/1osnVxVzObKBF5jr0Wg26dGQqTvOQqrKg";
