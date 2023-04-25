@@ -18,7 +18,7 @@ method:"GET",
     var res =JSON.parse(text);
     console.log(res);
     var title = res[0];
-    var detail = res[1];
+    var detail = res[2];
     var contributer = res[4];
     if(username==contributer){
         var idcon = document.getElementById('contributer');
